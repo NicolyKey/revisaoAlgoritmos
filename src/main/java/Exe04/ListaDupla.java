@@ -72,13 +72,43 @@ public class ListaDupla<T> {
 //seja exibido o valor do último nó da lista e por último seja exibido o valor do primeiro nó da lista.
      
      public void exibirOrdemInversa(){
-     
+       NoListaDupla<T> p = primeiro;
+       
+       while(p.getProximo() != null){
+         p = p.getProximo();
+       }
+        
+       while(p != null){
+           System.out.println(p.getInfo() +",");
+           p = p.getAnterior();
+       }
      }
 //e) liberar(): Deverá limpar a estrutura de dados. Ao invés de simplesmente atribuir null para a variável de
 //instância primeiro, remova todos os encadeamentos dos nós, isto é, atribua null para a associação proximo e
 //anterior em todos os nós da lista;
+     public void liberar(){
+        primeiro = null;
+     }
 //f) toString(): deve retornar os valores armazenados na lista, desde o primeiro nó até o último, separando-os por
 //vírgula.
+     public String toString(){
+         if (primeiro == null) {
+        return "Lista vazia";
+    }
+
+    String resultado = "";
+    NoListaDupla<T> atual = primeiro;
+
+    while (atual != null) {
+        resultado += atual.getInfo();
+        if (atual.getProximo() != null) {
+            resultado += ", ";
+        }
+        atual = atual.getProximo();
+    }
+
+    return resultado;
+     }
 
    
 }
