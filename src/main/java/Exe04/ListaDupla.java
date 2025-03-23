@@ -7,6 +7,7 @@ package Exe04;
 /**
  *
  * @author nicol
+ * @param <T>
  */
 public class ListaDupla<T> {
     private NoListaDupla primeiro;
@@ -22,21 +23,57 @@ public class ListaDupla<T> {
     }
 //a) inserir(T): Deve armazenar o dado fornecido como argumento na estrutura de dados;
      public void inserir(T valor){
-       NoListaDupla<T> novoNo = new NoListaDupla<T>();
+       NoListaDupla<T> novoNo = new NoListaDupla<>();
+       
        novoNo.setInfo(valor);
        novoNo.setProximo(primeiro);
-       primeiro.setAnterior(novoNo);
+       novoNo.setAnterior(null);
+       if(primeiro != null){
+         primeiro.setAnterior(novoNo);
+       }
        
        primeiro = novoNo;
      }
 //b) buscar(T): Deve procurar na lista encadeada se há um nó cujo conteúdo seja igual à variável valor (utilizar
 //igualdade de valores). Caso seja localizado, deverá retornar este nó (objeto da classe NoListaDupla). Se não for
 //localizado, deverá retornar null;
-     
+     public NoListaDupla<T> buscar(T valor){
+       NoListaDupla<T> p = primeiro;
+       
+       while(p != null){
+           if(p.getInfo() != valor){
+             return p;
+           }
+           p = p.getProximo();
+       }
+       
+       return null;
+     }
      
 //c) retirar(T): Deve retirar um nó da lista que contenha o valor informado como parâmetro para este método;
+     public void retirar(T valor){
+         NoListaDupla<T> p = buscar(valor);
+         
+         if(p != null){
+           if(primeiro.getInfo().equals(p)){
+             primeiro.setInfo(p.getProximo());
+           }else{
+              p.getAnterior().setProximo(p.getProximo());
+           }
+           
+           if(p.getProximo() != null){
+             p.getProximo().setAnterior(p.getAnterior());
+           }
+         }
+         
+     }
+     
 //d) exibirOrdemInversa(): deve exibir o conteúdo armazenado nos nós da lista encadeada de forma que primeiro
 //seja exibido o valor do último nó da lista e por último seja exibido o valor do primeiro nó da lista.
+     
+     public void exibirOrdemInversa(){
+     
+     }
 //e) liberar(): Deverá limpar a estrutura de dados. Ao invés de simplesmente atribuir null para a variável de
 //instância primeiro, remova todos os encadeamentos dos nós, isto é, atribua null para a associação proximo e
 //anterior em todos os nós da lista;
