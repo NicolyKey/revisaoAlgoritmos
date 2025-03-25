@@ -109,6 +109,19 @@ public class ListaDupla<T> {
 
     return resultado;
      }
+     
+//     g) concatenando uma lista duplamente encadeada
+//         MÉTODO concatenar(ListaDuplamenteEncadeada outraLista)
+//        SE (cabeça for nulo) ENTAO
+//            cabeça = outraLista.cabeça
+//            cauda = outraLista.cauda
+//        SENÃO SE (outraLista.cabeça for nulo) ENTAO
+//            RETORNAR (nada a fazer)
+//        SENÃO
+//            cauda.próximo = outraLista.cabeça
+//            outraLista.cabeça.anterior = cauda
+//            cauda = outraLista.cauda
+//        FIM SE
 
    
 }
