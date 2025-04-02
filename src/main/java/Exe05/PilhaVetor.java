@@ -52,16 +52,27 @@ public class PilhaVetor<T> implements Pilha<T> {
 
     @Override
     public boolean estaVazia() {
+        if(tamanho == 0){
+          return true;
+        }
+        return false;
     }
 
     @Override
     public void liberar() {
+      tamanho = 0;
+    }
+
+    @Override
+    public String toString() {
+    String resultado = " ";
+    
+    for(int i =0; i< tamanho; i++){
+       resultado = info + ", ";
+    }
+        return resultado;
     }
     
-    
-    public String toString(){
-       return String;
-    };
     
     public void concatenar(PilhaVetor<T> p){
     
