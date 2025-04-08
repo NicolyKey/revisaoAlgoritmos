@@ -4,10 +4,12 @@
  */
 package Exe05;
 
+import Exe03.ListaEncadeada;
+
 /**
  *
  * @author nklaraujo
  */
-public class PilhaLista {
+public class PilhaLista extends ListaEncadeada<Object>{
     
 }

@@ -68,6 +68,7 @@ public class PilhaVetor<T> implements Pilha<T> {
       }
       tamanho = 0;
       */
+
     }
 
     @Override
@@ -93,4 +94,30 @@ public class PilhaVetor<T> implements Pilha<T> {
        this.push((T)p.info[i]);
        }
     }    
+
+
+    public Object[] getInfo() {
+        return info;
+    }
+
+    public void setInfo(Object[] info) {
+        this.info = info;
+    }
+
+    public int getLimite() {
+        return limite;
+    }
+
+    public void setLimite(int limite) {
+        this.limite = limite;
+    }
+
+    public int getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
+    }
+  
 }
