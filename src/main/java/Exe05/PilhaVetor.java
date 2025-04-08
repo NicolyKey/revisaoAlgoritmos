@@ -24,46 +24,73 @@ public class PilhaVetor<T> implements Pilha<T> {
     @Override
     public void push(T valor) {
       if( limite == tamanho){
-         throw new RuntimeException();
+         throw new PilhaCheiaException();
       }
        info[tamanho] = valor;
        tamanho ++;
       
     }
-
-    @Override
-    public T pop() {
-      T valor;
-      valor = peek();
-      
-      //precisa apagar a referencia do objeto
-      tamanho --;
-      return valor;      
-    }
-
+    
     @Override
     public T peek() {
      if(estaVazia()){
-       throw new RuntimeException();
+       throw new PilhaVaziaException();
      }
      
      return (T) info[tamanho - 1];
     }
 
     @Override
+    public T pop() {
+      T valor = peek();     
+      info[tamanho -1] = null;
+      tamanho --;
+      
+      return valor;      
+    }
+
+
+
+    @Override
     public boolean estaVazia() {
+       return tamanho == 0;
     }
 
     @Override
     public void liberar() {
+      info = new Object[limite];
+      tamanho = 0;
+      
+      /*
+      ou 
+      for(int i=0; i< tamanho -1; i++){
+         info[i] = null;
+      }
+      tamanho = 0;
+      */
+    }
+
+    @Override
+    public String toString() {
+      String resultado = "";
+      
+      for(int i= tamanho -1; i>=0; i--){
+         resultado += info[i];
+         if(i>0){
+           resultado = resultado + ",";
+         }
+      }
+      
+     return resultado;
     }
     
-    
-    public String toString(){
-       return String;
-    };
-    
     public void concatenar(PilhaVetor<T> p){
-    
+       if(this.tamanho + p.tamanho > this.limite){
+         throw new PilhaCheiaException();
+       }
+       
+       for(int i =0; i<p.tamanho; i++){
+       this.push((T)p.info[i]);
+       }
     }    
 }
