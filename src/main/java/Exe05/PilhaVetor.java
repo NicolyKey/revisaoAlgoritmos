@@ -49,8 +49,6 @@ public class PilhaVetor<T> implements Pilha<T> {
       return valor;      
     }
 
-
-
     @Override
     public boolean estaVazia() {
        return tamanho == 0;
