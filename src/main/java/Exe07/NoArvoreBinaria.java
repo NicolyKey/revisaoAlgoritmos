@@ -21,6 +21,8 @@ public class NoArvoreBinaria<T> {
     }
 
     public NoArvoreBinaria(T info) {
+        this.esquerda = null;
+        this.direita = null;
         this.info = info;
     }
 
