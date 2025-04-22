@@ -16,6 +16,10 @@ public class ArvoreBinaria<T> {
         this.raiz = null;
     }
 
+    public NoArvoreBinaria<T> getRaiz() {
+        return raiz;
+    }
+
     public void setRaiz(NoArvoreBinaria<T> raiz) {
         this.raiz = raiz;
     }
