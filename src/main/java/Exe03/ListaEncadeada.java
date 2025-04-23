@@ -50,21 +50,21 @@ public class ListaEncadeada<T> {
     }
 
     public void retirar(T info){
-      NoLista<T> anterior = null;
-      NoLista<T> p = primeiro;
-      
-      while(p != null && (p.getInfo() != info)){
-          anterior = p;
-          p = p.getProximo();
-      }
-      
-      if(p != null){
-        if(p == primeiro){
-          this.primeiro = p;
+        NoLista<T> anterior = null;
+        NoLista<T> p = primeiro;
+
+        while(p != null && !p.getInfo().equals(info)){
+            anterior = p;
+            p = p.getProximo();
         }
-        anterior.setProximo(p.getProximo());
-        qtdeNos --;
-      }
+
+        if(p != null){
+            if(p == primeiro){
+                primeiro = p.getProximo();
+            } else {
+                anterior.setProximo(p.getProximo());
+            }
+        }
     }
 
     public int obterComprimento(){
