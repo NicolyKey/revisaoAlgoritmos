@@ -8,6 +8,6 @@ package Exe08;
  *
  * @author nklaraujo
  */
-public class Arvore {
+public class Arvore <T>{
     
 }
