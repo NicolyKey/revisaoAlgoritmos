@@ -1,6 +1,6 @@
 package Exe06;
 
-public class FilaVetor<T> {
+public class FilaVetor<T> implements Fila<T>{
     private Object[] info;
     private int limite;
     private int tamanho;
@@ -12,7 +12,7 @@ public class FilaVetor<T> {
         this.tamanho = 0;
         this.inicio = 0;
     }
-
+    @Override
     public void inserir(T valor){
        if(tamanho == limite){
            throw new FilaCheiaException();
@@ -21,19 +21,19 @@ public class FilaVetor<T> {
        info[posicaoInserir] = valor;
        tamanho ++;
     }
-
-   boolean estaVazia(){
+    @Override
+   public boolean estaVazia(){
         return tamanho == 0;
    }
-
-    T peek(){
+@Override
+   public T peek(){
         if(estaVazia()){
             throw  new FilaCheiaException();
         }
         return (T) info[inicio];
     }
-
-    T retirar(){
+@Override
+    public T retirar(){
         if(estaVazia()){
             throw  new FilaVaziaexception();
         }
@@ -43,7 +43,7 @@ public class FilaVetor<T> {
         tamanho --;
         return valor;
     }
-
+@Override
     public void liberar() {
             /*info = (T[])new Object[limite];
             tamanho = 0*/
@@ -56,11 +56,6 @@ public class FilaVetor<T> {
 
         }
     }
-//            • criarFilaConcatenada(f2: FilaVetor): FilaVetor
-//    Este método deve criar uma nova fila, a partir da concatenação de duas filas previamente existentes: a fila do
-//    objeto que executar o método criarFilaConcatenada(),aqui denominada de f1, e a fila recebida como
-//    argumento, denominada de f2. Observe a ilustração abaixo, que apresenta duas filas originais e seus elementos
-//    corretamente inseridos numa nova fila resultante (f3).
 
     FilaVetor<T> criarFilaConcatenada(FilaVetor<T> f2) {
         FilaVetor<T> f3 = new FilaVetor<T>(this.limite + f2.getLimite());
@@ -95,7 +90,7 @@ public class FilaVetor<T> {
     }
 
 
-
+@Override
     public String toString(){
         String resultado = "";
 
