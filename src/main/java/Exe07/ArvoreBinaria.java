@@ -129,36 +129,41 @@ public class ArvoreBinaria<T> {
     }
 
     public boolean isBalanced() {
-        return isBalanced(raiz);
+        if (this.raiz == null){
+            return true;
+        }
+        return estaBalanceada(this.raiz);
     }
 
-    private boolean isBalanced(NoArvoreBinaria<T> no) {
-        if (no == null) return true;
+    private boolean estaBalanceada(NoArvoreBinaria<T> no) {
+        int alturaEsquerda = getAltura(no.getEsquerda());
+        int alturaDireita = getAltura(no.getDireita());
 
-        int leftHeight = getHeight(no.getEsquerda());
-        int rightHeight = getHeight(no.getDireita());
-
-        return Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(no.getEsquerda()) && isBalanced(no.getDireita());
+        return Math.abs(alturaEsquerda - alturaDireita) <= 1 && estaBalanceada(no.getEsquerda()) && estaBalanceada(no.getDireita());
     }
 
-    private int getHeight(NoArvoreBinaria<T> no) {
-        if (no == null) return 0;
-        return Math.max(getHeight(no.getEsquerda()), getHeight(no.getDireita())) + 1;
+    private int getAltura(NoArvoreBinaria<T> no) {
+        if (no == null){
+            return 0;
+        }
+
+        return Math.max(getAltura(no.getEsquerda()), getAltura(no.getDireita())) + 1;
     }
 
     public void inverter(){
-        inverter(raiz);
+        if(raiz != null) {
+            inverter(raiz);
+        }
+        throw  new RuntimeException("arvore vazia");
     }
 
     private NoArvoreBinaria<T> inverter(NoArvoreBinaria<T> no){
-        if(no == null) return null;
-
         NoArvoreBinaria<T> temp = no.getEsquerda();
         no.setEsquerda(no.getDireita());
         no.setDireita(temp);
 
-        inverter(no.getDireita());
         inverter(no.getEsquerda());
+        inverter(no.getDireita());
 
         return no;
     }
