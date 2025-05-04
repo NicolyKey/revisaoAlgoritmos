@@ -70,4 +70,98 @@ public class ArvoreBinaria<T> {
         contador ++;
         return contador + contar(no.getEsquerda()) + contar(no.getDireita());
     }
+
+    //obter altura
+    public int obterAltura(){
+        return obterAltura(this.raiz);
+    }
+
+    private int obterAltura(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return -1;
+        }
+        int alturaEsquerda = obterAltura(no.getEsquerda());
+        int alturaDireita = obterAltura(no.getDireita());
+        return 1 + Math.max(alturaEsquerda, alturaDireita);
+    }
+     //contar folhas
+    public int contarFolhas(){
+        return contarFolhas(raiz);
+    }
+
+    private int contarFolhas(NoArvoreBinaria<T> no){
+        int contador = 0;
+        if(no == null){
+            return contador;
+        }
+
+        int contarFolhasEsquerda = contarFolhas(no.getEsquerda());
+        int contarFolhasDireita = contarFolhas(no.getDireita());
+         if(no.getEsquerda() == null && no.getDireita() == null){
+           contador ++;
+        }
+
+         contador += contarFolhasEsquerda + contarFolhasDireita;
+
+        return contador;
+    }
+
+    public String arvorePos(NoArvoreBinaria<T> no){
+        String resultado = "<";
+        if(no != null){
+            resultado += arvorePos(no.getEsquerda()) +
+                    arvorePos(no.getDireita()) +
+                    no.getInfo();
+        }
+
+        return resultado += ">";
+    }
+
+    public String arvoreOrdem(NoArvoreBinaria<T> no){
+        String resultado = "<";
+        if(no != null){
+            resultado += arvoreOrdem(no.getEsquerda()) +
+                    no.getInfo() +
+                    arvoreOrdem(no.getDireita());
+        }
+
+        return resultado += ">";
+    }
+
+    public boolean isBalanced() {
+        return isBalanced(raiz);
+    }
+
+    private boolean isBalanced(NoArvoreBinaria<T> no) {
+        if (no == null) return true;
+
+        int leftHeight = getHeight(no.getEsquerda());
+        int rightHeight = getHeight(no.getDireita());
+
+        return Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(no.getEsquerda()) && isBalanced(no.getDireita());
+    }
+
+    private int getHeight(NoArvoreBinaria<T> no) {
+        if (no == null) return 0;
+        return Math.max(getHeight(no.getEsquerda()), getHeight(no.getDireita())) + 1;
+    }
+
+    public void inverter(){
+        inverter(raiz);
+    }
+
+    private NoArvoreBinaria<T> inverter(NoArvoreBinaria<T> no){
+        if(no == null) return null;
+
+        NoArvoreBinaria<T> temp = no.getEsquerda();
+        no.setEsquerda(no.getDireita());
+        no.setDireita(temp);
+
+        inverter(no.getDireita());
+        inverter(no.getEsquerda());
+
+        return no;
+    }
+
+
 }
