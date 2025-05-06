@@ -91,7 +91,25 @@ public class PilhaVetor<T> implements Pilha<T> {
        for(int i =0; i<p.tamanho; i++){
        this.push((T)p.info[i]);
        }
-    }    
+    } 
+
+        public void concatenarAlterado(PilhaVetor<T> p) {
+        if (this.tamanho + p.tamanho > this.limite) {
+            throw new PilhaCheiaException();
+        }
+
+        // Cria um vetor auxiliar para armazenar os elementos na ordem correta
+        Object[] elementos = new Object[p.tamanho];
+        for (int i = p.tamanho - 1; i >= 0; i--) {
+            elementos[i] = p.info[i];
+        }
+
+        // Insere os elementos na ordem original da pilha fornecida
+        for (int i = 0; i < p.tamanho; i++) {
+            this.push((T) elementos[i]);
+        }
+    }
+
 
 
     public Object[] getInfo() {
