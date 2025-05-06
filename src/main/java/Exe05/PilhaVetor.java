@@ -117,5 +117,4 @@ public class PilhaVetor<T> implements Pilha<T> {
     public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
     }
-  
 }
