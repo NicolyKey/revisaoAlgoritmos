@@ -11,10 +11,17 @@ package Exe08;
 public class NoArvore<T> {
    private NoArvore<T> primeiro; // filho;
    private NoArvore<T> proximo; // irmãos do filho
-   private T info[];
+   private T info;
 
-    public NoArvore(T[] info) {
+    public NoArvore(T info) {
         this.info = info;
+        this.primeiro = null;
+        this.proximo = null;
+    }
+
+    public void inserirFilho(NoArvore<T> sa){
+        sa.setProximo(primeiro);
+        primeiro = sa;
     }
 
     public NoArvore<T> getPrimeiro() {
@@ -33,11 +40,11 @@ public class NoArvore<T> {
         this.proximo = proximo;
     }
 
-    public T[] getInfo() {
+    public T getInfo() {
         return info;
     }
 
-    public void setInfo(T[] info) {
+    public void setInfo(T info) {
         this.info = info;
     }
    

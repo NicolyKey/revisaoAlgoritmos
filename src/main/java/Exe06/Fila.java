@@ -9,9 +9,10 @@ package Exe06;
  * @author nklaraujo
  */
 public interface Fila<T> {
-    public void inserir(T valor);//inserir
+
+    public void inserir(T valor);
     public boolean estaVazia();
-    public int peek();
-    public int retirar();//retirar
+    public T peek();
+    public T retirar();//retirar
     public void liberar();
 }
