@@ -28,6 +28,7 @@ public class PilhaVetor<T> implements Pilha<T> {
       }
        info[tamanho] = valor;
        tamanho ++;
+      
     }
     
     @Override
@@ -81,7 +82,18 @@ public class PilhaVetor<T> implements Pilha<T> {
       
      return resultado;
     }
-    public void concatenar(PilhaVetor<T> p) {
+    
+    public void concatenar(PilhaVetor<T> p){
+       if(this.tamanho + p.tamanho > this.limite){
+         throw new PilhaCheiaException();
+       }
+       
+       for(int i =0; i<p.tamanho; i++){
+       this.push((T)p.info[i]);
+       }
+    } 
+
+        public void concatenarAlterado(PilhaVetor<T> p) {
         if (this.tamanho + p.tamanho > this.limite) {
             throw new PilhaCheiaException();
         }
@@ -123,4 +135,5 @@ public class PilhaVetor<T> implements Pilha<T> {
     public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
     }
+  
 }
