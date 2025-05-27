@@ -1,8 +1,6 @@
 package Exe10;
 
 public class OrdenacaoQuickSort <T extends Comparable<T>> extends OrdenacaoAbstract<T> {
-
-
     public void ordernar(){
         int n = getInfo().length - 1;
         quickSort(0,n);
