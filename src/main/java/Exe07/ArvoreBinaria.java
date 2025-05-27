@@ -84,7 +84,7 @@ public class ArvoreBinaria<T> {
         int alturaDireita = obterAltura(no.getDireita());
         return 1 + Math.max(alturaEsquerda, alturaDireita);
     }
-     //contar folhas
+     //contar folhasA
     public int contarFolhas(){
         return contarFolhas(raiz);
     }
@@ -151,21 +151,34 @@ public class ArvoreBinaria<T> {
     }
 
     public void inverter(){
-        if(raiz != null) {
-            inverter(raiz);
-        }
-        throw  new RuntimeException("arvore vazia");
+        inverter(raiz);
     }
 
-    private NoArvoreBinaria<T> inverter(NoArvoreBinaria<T> no){
+    private void inverter(NoArvoreBinaria<T> no){
+        if(no == null){
+            throw new RuntimeException();
+        }
         NoArvoreBinaria<T> temp = no.getEsquerda();
         no.setEsquerda(no.getDireita());
         no.setDireita(temp);
 
         inverter(no.getEsquerda());
         inverter(no.getDireita());
+    }
 
-        return no;
+    public boolean isDegenerada(){
+        if(raiz == null){
+            return false;
+        }
+        return isDEgenerada(this.raiz);
+    }
+
+    private boolean isDEgenerada(NoArvoreBinaria<T> no){
+        if(no.getEsquerda() != null && no.getDireita() != null){
+            return false;
+        }
+        return isDEgenerada(no.getEsquerda()) &&
+        isDEgenerada(no.getDireita());
     }
 
 
