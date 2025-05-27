@@ -18,14 +18,14 @@ public class OrdenacaoMergeSort <T extends Comparable<T>> extends OrdenacaoAbstr
     private void merge(int inicio, int fim, int meio){
        T[] info = getInfo();
        int tamEsquerda = meio - inicio + fim;
-       T[] esquerda = (T[]) new Object[tamEsquerda];
+       T[] esquerda = (T[]) new Comparable[tamEsquerda];
 
        for(int i =0; i < tamEsquerda; i++){
            esquerda[i] = info[inicio + i];
        }
 
         int tamDireita = meio - inicio + fim;
-        T[] direita = (T[]) new Object[tamEsquerda];
+        T[] direita = (T[]) new Comparable[tamEsquerda];
 
         for(int i =0; i < tamDireita; i++){
             direita[i] = info[meio + 1 + i];
@@ -33,7 +33,8 @@ public class OrdenacaoMergeSort <T extends Comparable<T>> extends OrdenacaoAbstr
 
         int cEsq = 0;
         int cDir = 0;
-        for(int i = inicio; i<= fim; i++){
+        int i;
+        for(i = inicio; i<= fim; i++){
             if(cEsq < tamEsquerda && cDir < tamDireita){
                 if(esquerda[cEsq].compareTo(direita[cDir])<0){
                     info[i] = esquerda[cEsq];
@@ -48,15 +49,15 @@ public class OrdenacaoMergeSort <T extends Comparable<T>> extends OrdenacaoAbstr
         }
 
         while(cEsq < tamEsquerda){
-            info[0] = esquerda[cEsq];
+            info[i] = esquerda[cEsq];
             cEsq ++;
-            // i ++;
+            i ++;
         }
 
         while(cDir < tamDireita){
-            info[0] = direita[cDir];
+            info[i] = direita[cDir];
             cDir ++;
-            // i ++;
+            i ++;
         }
     }
 }
