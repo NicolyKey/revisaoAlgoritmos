@@ -13,6 +13,15 @@ import java.time.LocalDate;
 public class Aluno {
     private int matricula;
     private String nome;
+    private LocalDate dataNascimento;
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
     public Aluno(int matricula, String nome, LocalDate dataNascimento) {
         this.matricula = matricula;
