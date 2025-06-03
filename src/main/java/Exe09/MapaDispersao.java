@@ -24,7 +24,7 @@ public class MapaDispersao <T> {
       return chave % tamanho;
     }
     
-    public void inserir(int chave, int dado)
+    public void inserir(int chave, T dado)
     {
       int indice = calcularHash(chave);
       
@@ -34,7 +34,26 @@ public class MapaDispersao <T> {
       }
       
       NoMapa<T> noMapa = new NoMapa<>();
+      noMapa.setChave(chave);
+      noMapa.setInfo(dado);
+      info[indice].inserir(noMapa);
      
+    }
+
+    public T buscar(int chave){
+        int indice = calcularHash(chave);
+
+        if(info[indice] != null){
+            NoMapa<T> noMapa = new NoMapa<>();
+            noMapa.setChave(chave);
+            NoMapa<T> no = info[indice].buscar(noMapa);
+            return  no.getInfo();
+        }
+        return null;
+    }
+
+    public double calcularFatorCarga(){
+
     }
     
     
