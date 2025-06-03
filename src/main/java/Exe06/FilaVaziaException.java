@@ -1,6 +1,6 @@
 package Exe06;
 
-public class FilaVaziaException  extends RuntimeException{
+public class FilaVaziaException {
 
     //    Sendo que:
 //            • FilaVetor(int):

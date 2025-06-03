@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Exe05;
-
 import Exe03.ListaEncadeada;
+import Exe03.NoLista;
 
 /**
  *
@@ -41,23 +41,39 @@ public class PilhaLista<T> implements Pilha<T>{
 
     @Override
     public void liberar() {
-      lista = new ListaEncadeada();
-      
-      /*
+
       while(!estaVazia()){
          try{
          while(true){
             pop(); 
            }
-         }catch(PilhaVazia e){
+         }catch(PilhaVaziaException e){
          
          }
       }
-      */
+
+    }
+    public String toString(){
+        return  lista.toString();
     }
     
-    public String toString(){
-       return lista.toString();
+    //[10,20,30] - 10,10,20,20,30,30
+    public void duplicarEntrada(){
+        NoLista<T> p = new NoLista<>();
+        p.setInfo(peek()); // pega o ponteiro e fala que ele é o primeiro
+        T primeiro = peek(); // declara o primeirp
+
+        while(p != null){
+            if(p == primeiro){
+                p.setProximo(p); //
+            }
+            NoLista<T> proximo = p.getProximo(); // pega o proximo do ponteiro
+            p.setProximo(p); // declara que o prox do ponteiro é ele mesmo
+            p.getProximo().setProximo(proximo); // pega o proximo e declara que o proximo é o proximo
+            p = p.getProximo(); // pra conseguir andar
+        }
+
     }
+
     
 }

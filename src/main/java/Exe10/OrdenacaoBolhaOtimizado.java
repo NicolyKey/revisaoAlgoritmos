@@ -1,12 +1,9 @@
 package Exe10;
 
 public class OrdenacaoBolhaOtimizado <T extends Comparable<T>> extends OrdenacaoAbstract<T> {
-   public void ordenar(){
+
+    public void ordenar() {
         T[] info = getInfo();
-
-   }
-
-    private void ordenarPorBolha(T[] info) {
         int n = info.length;
         boolean trocou;
 
