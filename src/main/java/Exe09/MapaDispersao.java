@@ -5,6 +5,7 @@
 package Exe09;
 
 import Exe06.ListaEncadeada;
+import Exe06.NoLista;
 
 /**
  *
@@ -30,14 +31,13 @@ public class MapaDispersao <T> {
       
       if(info[indice] == null)
       {
-          info[indice] = new ListaEncadeada();
+          info[indice] = new ListaEncadeada<>();
       }
       
       NoMapa<T> noMapa = new NoMapa<>();
       noMapa.setChave(chave);
       noMapa.setInfo(dado);
       info[indice].inserir(noMapa);
-     
     }
 
     public T buscar(int chave){
@@ -46,16 +46,37 @@ public class MapaDispersao <T> {
         if(info[indice] != null){
             NoMapa<T> noMapa = new NoMapa<>();
             noMapa.setChave(chave);
-            NoMapa<T> no = info[indice].buscar(noMapa);
-            return  no.getInfo();
+            
+            NoLista<NoMapa<T>> no;
+            no = info[indice].buscar(noMapa);
+            if(no != null){
+            return no.getInfo().getInfo();
+           }
         }
         return null;
     }
 
+    // ter um atributo do tamanho do mapa para melhor performance
     public double calcularFatorCarga(){
+        int qtdeObjetosAdicionados = 0;
+        for (ListaEncadeada<NoMapa<T>> info1 : info) {
+            if (info1 != null) {
+                qtdeObjetosAdicionados = qtdeObjetosAdicionados + info1.obterComprimento();
+            }
+        }
 
+        return (1.0) * qtdeObjetosAdicionados / info.length;
     }
     
+    public void remover(int chave){
+      int indice = calcularHash(chave);
+      
+      if(info[indice] != null){
+        NoMapa no = new NoMapa<>();
+        no.setChave(chave);
+        info[indice].retirar(no);
+      }
+    }
     
     
 }
