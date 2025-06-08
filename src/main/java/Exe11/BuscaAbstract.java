@@ -1,13 +1,13 @@
 package Exe11;
 
-public abstract class BuscaAbstract {
-    private Object[] info;
+public abstract class BuscaAbstract<T> {
+    private T[] info;
 
-    public Object[] getInfo() {
+    public T[] getInfo() {
         return info;
     }
 
-    public void setInfo(Object[] info) {
+    public void setInfo(T[] info) {
         this.info = info;
     }
 }

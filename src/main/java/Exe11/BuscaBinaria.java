@@ -13,7 +13,7 @@ public class BuscaBinaria<T extends Comparable<T>> extends BuscaAbstract {
                 fim = meio - 1;
             }
             if(((T)getInfo()[meio]).compareTo(valor)<0){
-                inicio = meio - 1;
+                inicio = meio + 1;
             }else{
                 return meio;
             }
