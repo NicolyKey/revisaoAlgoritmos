@@ -45,7 +45,6 @@ public class OrdenacaoQuickSort <T extends Comparable<T>> extends OrdenacaoAbstr
         T[] info = getInfo();
         int meio = (inicio + fim) / 2;
 
-
         if (info[inicio].compareTo(info[meio]) > 0) {
             trocar(inicio, meio);
         }
