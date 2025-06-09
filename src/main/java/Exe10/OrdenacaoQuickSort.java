@@ -18,9 +18,7 @@ public class OrdenacaoQuickSort <T extends Comparable<T>> extends OrdenacaoAbstr
         T[] info = getInfo();
         int a = inicio;
         int b = fim + 1;
-        // TODO: adicionar aqui a parte do melhor de três do quicksort
-
-        T pivo = melhorDeTres(int inicio, int fim);
+        T pivo = melhorDeTres(inicio, fim);
 
         while (true) {
             do {
@@ -43,9 +41,24 @@ public class OrdenacaoQuickSort <T extends Comparable<T>> extends OrdenacaoAbstr
         return b;
     }
 
-    private T melhorDeTres(int inicio, int fim){
+    private T melhorDeTres(int inicio, int fim) {
+        T[] info = getInfo();
         int meio = (inicio + fim) / 2;
 
-        if(getInfo()[meio].compareTo(getInfo()[inicio]))
+
+        if (info[inicio].compareTo(info[meio]) > 0) {
+            trocar(inicio, meio);
+        }
+        if (info[inicio].compareTo(info[fim]) > 0) {
+            trocar(inicio, fim);
+        }
+        if (info[meio].compareTo(info[fim]) > 0) {
+            trocar(meio, fim);
+        }
+
+
+        trocar(meio, inicio);
+
+        return info[inicio];
     }
 }
