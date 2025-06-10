@@ -23,12 +23,12 @@ public abstract class ArvoreBinariaAbstract<T> {
 
     public boolean pertence(T info)
     {
-        return pertence(raiz, info);
+        return buscar(info) != null;
     }
 
     private boolean pertence(NoArvoreBinaria<T> no, T info)
     {
-        if(no == null){
+        if(no == null){;
             return false;
         }
 

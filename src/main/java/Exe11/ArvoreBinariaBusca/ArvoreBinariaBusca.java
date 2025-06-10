@@ -7,9 +7,11 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
 //    Negativo: O objeto atual é menor.
 //    Zero: Os objetos são iguais.
 //    Positivo: O objeto atual é maior.
+    
     @Override
     public NoArvoreBinaria<T> buscar(T valor) {
         NoArvoreBinaria<T> p = this.getRaiz();
+        // o compare é mais custoso que o equals 
         while(p != null && p.getInfo().compareTo(valor) != 0){
             if(valor.compareTo(p.getInfo()) < 0){
                 p = p.getEsquerda();
