@@ -18,6 +18,7 @@ public class OrdenacaoQuickSort <T extends Comparable<T>> extends OrdenacaoAbstr
         T[] info = getInfo();
         int a = inicio;
         int b = fim + 1;
+        // TODO: adicionar aqui a parte do melhor de três do quicksort
         T pivo = info[inicio];
 
         while (true) {
