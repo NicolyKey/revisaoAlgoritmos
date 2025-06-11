@@ -49,7 +49,7 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
                     }
                 }
             } else {
-
+                // segundo caso
                 if (ponteiro.getDireita() == null) {
                     if (ponteiro == getRaiz()) {
                         setRaiz(ponteiro.getEsquerda());
@@ -60,8 +60,10 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
                             pai.setDireita(ponteiro.getDireita());
                         }
                     }
+                    // ta falstando um else
                     
                 } else {
+                    // terceiro caso
                     NoArvoreBinaria<T> sucessor = extrairSucessor(ponteiro);
 
                     if (ponteiro == getRaiz()) {
@@ -78,7 +80,6 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
             }
         }
 
-        // só vai cair aqui se caso o ponteiro for nulo
     }
 
     public NoArvoreBinaria<T> extrairSucessor(NoArvoreBinaria<T> ponteiro) {
