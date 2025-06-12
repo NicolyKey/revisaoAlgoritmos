@@ -8,11 +8,11 @@ class OrdenacaoQuickSortTest {
 
     @Test
     void ordenar() {
-        String[] entrada = { "Lucas", "Ana", "Pedro", "Beatriz", "João", "Carlos" };
+        Integer[] entrada = { 10, 20, 4, 35, 12, 42, 2};
 
-        String[] esperado = { "Ana", "Beatriz", "Carlos", "João", "Lucas", "Pedro" };
+        Integer[] esperado = { 2, 4, 10, 12, 20, 35, 42 };
 
-        OrdenacaoQuickSort<String> quickSort = new OrdenacaoQuickSort<>();
+        OrdenacaoQuickSort<Integer> quickSort = new OrdenacaoQuickSort<>();
         quickSort.setInfo(entrada);
         quickSort.ordernar();
 
