@@ -35,7 +35,7 @@ public class FilaVetor<T> implements Fila<T>{
 @Override
     public T retirar(){
         if(estaVazia()){
-            throw new FilaVaziaException();
+            throw new RuntimeException();
         }
         T valor = peek();
         info[inicio] = null;
@@ -52,7 +52,7 @@ public class FilaVetor<T> implements Fila<T>{
             while(true){
                 retirar();
             }
-        } catch(FilaVaziaException e){
+        } catch(RuntimeException e){
 
         }
     }
