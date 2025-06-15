@@ -8,9 +8,8 @@ class OrdenacaoQuickSortTest {
 
     @Test
     void ordenar() {
-        Integer[] entrada = { 10, 20, 4, 35, 12, 42, 2};
-
-        Integer[] esperado = { 2, 4, 10, 12, 20, 35, 42 };
+        Integer[] entrada = { 10, 15, 4, 6, 2, 0, 11 };
+        Integer[] esperado = { 0, 2, 4, 6, 10, 11, 15 };
 
         OrdenacaoQuickSort<Integer> quickSort = new OrdenacaoQuickSort<>();
         quickSort.setInfo(entrada);

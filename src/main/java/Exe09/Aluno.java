@@ -5,6 +5,7 @@
 package Exe09;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *
@@ -45,5 +46,16 @@ public class Aluno {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Aluno aluno = (Aluno) o;
+        return matricula == aluno.matricula && Objects.equals(nome, aluno.nome) && Objects.equals(dataNascimento, aluno.dataNascimento);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(matricula, nome, dataNascimento);
+    }
 }

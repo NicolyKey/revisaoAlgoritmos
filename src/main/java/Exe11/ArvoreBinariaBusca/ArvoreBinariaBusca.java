@@ -90,9 +90,9 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
         while (atual != null) {
             paiSucessor = sucessor;
             sucessor = atual;
-            atual = atual
+            atual = atual;
         }
-
+     return null;
     }
 
     public void inserir(T info) {

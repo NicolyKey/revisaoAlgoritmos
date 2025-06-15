@@ -15,26 +15,25 @@ public class OrdenacaoQuickSort <T extends Comparable<T>> extends OrdenacaoAbstr
         }
 
             private int particionar(int inicio, int fim) {
-            T[] info = getInfo();
-            T pivo = selecionarPivo(inicio, fim); 
-            int a = inicio;
-            int b = fim;
+                int a = inicio;
+                int b = fim + 1;
+                T pivo = getInfo()[inicio];
 
-            while (a <= b) {
-                while (info[a].compareTo(pivo) < 0) {
-                    a++;
-                }
-                while (info[b].compareTo(pivo) > 0) {
-                    b--;
-                }
-                if (a <= b) {
+                while(true) {
+                    do { a++; } while (a <= fim && getInfo()[a].compareTo(pivo)< 0);
+
+                    do { b--; } while (b >= inicio && getInfo()[b].compareTo(pivo) > 0);
+
+                    if (a >= b) {
+                        break;
+                    }
                     trocar(a, b);
-                    a++;
-                    b--;
                 }
-            }
+                trocar(b, inicio);
 
-            return a;
+                T[] variavel = getInfo();
+
+                return b;
         }
 
         private T selecionarPivo(int inicio, int fim) {

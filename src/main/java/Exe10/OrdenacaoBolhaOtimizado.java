@@ -10,7 +10,7 @@ public class OrdenacaoBolhaOtimizado <T extends Comparable<T>> extends Ordenacao
         for (int i = n - 1; i > 1; i--) {
             trocou = false;
 
-            for (int j = 0; j < i - 1; j++) {
+            for (int j = 0; j <= i-1; j++) {
                 if (info[j].compareTo(info[j + 1]) > 0) {
                     trocar(j, j + 1);
                     trocou = true;

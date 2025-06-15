@@ -82,6 +82,16 @@ public class MapaDispersao <T> {
         tamanhoMapa --;
       }
     }
-    
-    
+
+    public void includeAll(MapaDispersao<T> mapToInclude) {
+        for (ListaEncadeada<NoMapa<T>> position : mapToInclude.info) {
+            if (position != null) {
+                NoLista<NoMapa<T>> item = position.getPrimeiro();
+                while(item != null) {
+                    inserir(item.getInfo().getChave(), item.getInfo().getInfo());
+                    item = item.getProximo();
+                }
+            }
+        }
+    }
 }
