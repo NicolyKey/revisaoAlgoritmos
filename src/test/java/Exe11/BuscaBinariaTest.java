@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class BuscaBinariaTest {
     @Test
     public void buscar() {
-        Integer[] vetor = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-        BuscaBinaria<Integer> buscaBinaria = new BuscaBinaria<>();
+        String[] vetor = {"Ana", "Daniel", "Eduardo", "Fabricio", "Gustavo", "Henrique", "Ivanir", "Joao", "Ktelen", "Ktellyn", "Maria", "Marlene"  };
+        BuscaBinaria<String> buscaBinaria = new BuscaBinaria<>();
         buscaBinaria.setInfo(vetor);
-        buscaBinaria.buscar(80);
+        buscaBinaria.buscar("Ktelen");
 
-        assertEquals(8, buscaBinaria.buscar(80));
+        assertEquals(8, buscaBinaria.buscar("Ktelen"));
     }
 
 }

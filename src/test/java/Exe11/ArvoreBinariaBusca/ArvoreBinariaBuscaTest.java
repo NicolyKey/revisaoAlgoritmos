@@ -30,6 +30,13 @@ class ArvoreBinariaBuscaTest {
         arvore.inserir(63);
         arvore.inserir(67);
         arvore.inserir(90);
+        arvore.inserir(79);
+        arvore.inserir(72);
+        arvore.retirar(71);
+
+        String esperado = "<80<52<48<><>><72<63<><67<><>>><79<><>>>><90<><>>>";
+
+        assertEquals(esperado, arvore.toString());
 
     }
 

@@ -21,80 +21,92 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
         return p;
     }
 
-    public void retirar(T valor) {
-        NoArvoreBinaria<T> ponteiro = this.getRaiz();
+    public void retirar(T info) {
+        NoArvoreBinaria<T> p = getRaiz();
         NoArvoreBinaria<T> pai = null;
-        boolean filhoEsquerdo = false;
+        boolean filhoEsquerda = false;
 
-        while (ponteiro != null && !ponteiro.getInfo().equals(valor)) {
-            pai = ponteiro;
-            if (valor.compareTo(ponteiro.getInfo()) < 0) {
-                filhoEsquerdo = true;
-                ponteiro = ponteiro.getEsquerda();
+        while((p != null) && (!p.getInfo().equals(info))) {
+            pai = p;
+
+            if (info.compareTo(p.getInfo()) < 0) {
+                filhoEsquerda = true;
+                p = p.getEsquerda();
             } else {
-                filhoEsquerdo = false;
-                ponteiro = ponteiro.getDireita();
+                filhoEsquerda = false;
+                p = p.getDireita();
             }
         }
 
-        if (ponteiro != null) {
-            if (ponteiro.getEsquerda() == null && ponteiro.getDireita() == null) {
-                if (ponteiro.equals(getRaiz())) {
+        if (p != null) {
+            if ((p.getEsquerda() == null) && (p.getDireita() == null)) {
+                if (p == getRaiz()) {
                     setRaiz(null);
                 } else {
-                    if (filhoEsquerdo) {
+                    if (filhoEsquerda) {
                         pai.setEsquerda(null);
                     } else {
                         pai.setDireita(null);
                     }
                 }
             } else {
-                // segundo caso
-                if (ponteiro.getDireita() == null) {
-                    if (ponteiro == getRaiz()) {
-                        setRaiz(ponteiro.getEsquerda());
+                if (p.getDireita() == null) {
+                    if (p == getRaiz()) {
+                        setRaiz(p.getEsquerda());
                     } else {
-                        if (filhoEsquerdo) {
-                            pai.setEsquerda(ponteiro.getDireita());
+                        if (filhoEsquerda) {
+                            pai.setEsquerda(p.getEsquerda());
                         } else {
-                            pai.setDireita(ponteiro.getDireita());
+                            pai.setDireita(p.getEsquerda());
                         }
                     }
-                    // ta falstando um else
-                    
                 } else {
-                    // terceiro caso
-                    NoArvoreBinaria<T> sucessor = extrairSucessor(ponteiro);
-
-                    if (ponteiro == getRaiz()) {
-                        setRaiz(sucessor);
-                    } else {
-                        if (filhoEsquerdo) {
-                            pai.setEsquerda(sucessor);
+                    if (p.getEsquerda() == null) {
+                        if (p == getRaiz()) {
+                            setRaiz(p.getDireita());
                         } else {
-                            pai.setDireita(sucessor);
+                            if (filhoEsquerda) {
+                                pai.setEsquerda(p.getDireita());
+                            } else {
+                                pai.setDireita(p.getDireita());
+                            }
                         }
-                        sucessor.setEsquerda(ponteiro.getEsquerda());
+                    } else {
+                        NoArvoreBinaria<T> next = extrairSucessor(p);
+                        if (p == getRaiz()) {
+                            setRaiz(next);
+                        } else {
+                            if (filhoEsquerda) {
+                                pai.setEsquerda(next);
+                            } else {
+                                pai.setDireita(next);
+                            }
+                        }
+                        next.setEsquerda(p.getEsquerda());
                     }
                 }
             }
         }
-
     }
 
-    public NoArvoreBinaria<T> extrairSucessor(NoArvoreBinaria<T> ponteiro) {
-        NoArvoreBinaria<T> atual = ponteiro.getDireita();
-        NoArvoreBinaria<T> paiSucessor = ponteiro;
-        NoArvoreBinaria<T> sucessor = ponteiro;
+    private NoArvoreBinaria<T> extrairSucessor(NoArvoreBinaria<T> p) {
+        NoArvoreBinaria<T> atual = p.getDireita();
+        NoArvoreBinaria<T> paiSucessor = p;
+        NoArvoreBinaria<T> sucessor = p;
 
-        while (atual != null) {
+        while(atual != null) {
             paiSucessor = sucessor;
             sucessor = atual;
-            atual = atual;
+            atual = atual.getEsquerda();
         }
-     return null;
-    }
 
+        if (sucessor != p.getDireita()) {
+            paiSucessor.setEsquerda(sucessor.getDireita());
+            sucessor.setDireita(p.getDireita());
+        }
+
+        return sucessor;
+    }
     public void inserir(T info) {
         NoArvoreBinaria<T> novoNo = new NoArvoreBinaria<>(info);
 
